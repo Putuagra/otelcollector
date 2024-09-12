@@ -1,0 +1,36 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+        # endpoint: localhost:4317
+      http:
+        endpoint: 0.0.0.0:4318
+        # endpoint: localhost:4318
+
+exporters:
+  logging:
+    verbosity: detailed
+  otlp/elastic:
+    # endpoint: "host.docker.internal:8200"
+    endpoint: "localhost:8200"
+    tls:
+      insecure: true
+      # insecure: false
+    # headers:
+    #   Authorization: "Bearer YOUR_APM_SERVER_SECRET"
+
+processors:
+  batch:
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [logging, otlp/elastic]
+    metrics:
+      receivers: [otlp]
+      exporters: [logging, otlp/elastic]
+    logs: 
+      receivers: [otlp]
+      exporters: [logging, otlp/elastic]
