@@ -15,7 +15,7 @@ details:
 -d -> detached mode, akan berjalan pada background
 -p 4317:4317 -p 4318:4318 -> port mappings
 --name otelcol-local -> memberi nama pada container
--v /e/Metrodata/BNI/otelcollector/collector-config.yaml:/etc/otel/config.yaml -> volume mount, mount file/folder dari host ke container
+-v /e/otelcollector/collector-config.yaml:/etc/otel/config.yaml -> volume mount, mount file/folder dari host ke container
 otel/opentelemetry-collector:latest -> nama dari image yg digunakan
 --config=/etc/otel/config.yaml -> argumen otelcol untuk menggunakan konfigurasi pada file yang ada pada path tersebut, path yg di-mount
 
